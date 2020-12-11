@@ -1,0 +1,86 @@
+version: '3.3'
+
+# Services
+services:
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx-container
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - .local/lemp/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - fsct-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - .local/lemp/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: fsct # This will be your DB Name
+      MYSQL_USER: homestead # MySql Username
+      MYSQL_PASSWORD: secret # MySql Username Password
+      MYSQL_ROOT_PASSWORD: secret # MySql Root User Password
+    networks:
+      - fsct-network
+
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile #PHP Custom Dockerfile for Building Image
+    image: custom-php
+    container_name: php-container
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - fsct-network
+
+  composer:
+    image: composer:latest
+    container_name: composer-container
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - php
+    networks:
+      - fsct-network
+
+  npm:
+    image: node:13.7
+    container_name: npm
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ['npm']
+    command: ['--version']
+
+  artisan:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    container_name: artisan-container
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ['php', '/var/www/html/artisan'] # Pointing the artisan command
+    networks:
+      - fsct-network
+
+# Networks
+networks:
+  fsct-network:
