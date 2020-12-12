@@ -80,7 +80,6 @@ services:
       - mysql
     working_dir: /var/www/html
     entrypoint: ['php', '/var/www/html/artisan'] # Pointing the artisan command
-    command: ['--version'] # Make sure the artisan container is accessible
     networks:
       - fsct-network
 
