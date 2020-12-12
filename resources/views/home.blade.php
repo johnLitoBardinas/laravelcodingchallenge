@@ -49,7 +49,7 @@
                         <tr>
                             <th>Emp. ID</th>
                             <th>First Name</th>
-                            <th>Surname</th>
+                            <th>Last Name</th>
                             <th>Age</th>
                             <th>Contact Number</th>
                             <th>Address</th>
