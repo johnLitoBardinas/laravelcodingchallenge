@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -12,19 +13,13 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $companies = Company::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $company = $request->get('company') ? Company::where('name', $request->get('company'))->with('employees')->first() : null;
+
+        return view('employees.index')->with(compact('companies', 'company'));
     }
 
     /**
@@ -35,7 +30,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('You hit the Store Method');
     }
 
     /**
@@ -46,7 +41,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -57,7 +52,8 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        dump('This is the Employee Edit');
+        dd($employee);
     }
 
     /**
@@ -80,6 +76,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return back();
     }
 }
