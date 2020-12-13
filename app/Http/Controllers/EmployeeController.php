@@ -20,8 +20,13 @@ class EmployeeController extends Controller
 
     public function store(RequestsEmployee $employee)
     {
-        dump($employee->all());
-        dd('You hit the Store Method');
+        $employee = new Employee($employee->all());
+        $employee->employee_id = generate_employee_id();
+        $employee->saveOrFail();
+
+        session()->flash('success', 'Employee Added');
+
+        return back();
     }
 
     public function show(Employee $employee)
@@ -31,13 +36,22 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        dump('This is the Employee Edit');
-        dd($employee);
+        $companies = Company::all();
+
+        return view('employees.edit', compact('companies', 'employee'));
     }
 
-    public function update(Request $request, Employee $employee)
+    public function update(RequestsEmployee $request, Employee $employee)
     {
-        //
+        $isUpdated = $employee->update($request->all());
+
+        if ($isUpdated) {
+            session()->flash('success', 'Employee Updated');
+        } else {
+            session()->flash('error', 'Unable to Update Employee');
+        }
+
+        return back();
     }
 
     public function destroy(Employee $employee)
