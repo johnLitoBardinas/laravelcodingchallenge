@@ -23,7 +23,7 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-            'employee_id' => 'fsct-' . substr($this->faker->sha256, 0, 6),
+            'employee_id' => generate_employee_id(),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'age' => $this->faker->randomElement([10, 20, 30]),
