@@ -30,6 +30,7 @@ class Employee extends FormRequest
                 new IsCompanyExist(),
                 'bail',
             ],
+            'email' => 'required|email|unique:employees,email',
             'first_name' => 'required|string|max:119',
             'last_name' => 'required|string|max:119',
             'age' => 'required|integer|min:1|max:127',

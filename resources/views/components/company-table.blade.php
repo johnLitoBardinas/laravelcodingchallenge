@@ -14,8 +14,7 @@
                         <th>Employee ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Contact Number</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -29,8 +28,7 @@
                             </td>
                             <td class="text-center">{{$employee->first_name}}</td>
                             <td class="text-center">{{$employee->last_name}}</td>
-                            <td class="text-center">{{$employee->age}}</td>
-                            <td class="text-center">{{$employee->contact_number}}</td>
+                            <td class="text-center">{{$employee->email}}</td>
                             <td class="mb-2 p-3 text-center flex justify-center align-baseline">
                                 <a href="{{ route('employees.edit', $employee) }}" class="p-2 bg-indigo-400 text-white rounded mr-2">EDIT</a>
 
@@ -43,7 +41,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7"> No Employees </td>
+                            <td colspan="5"> No Employees </td>
                         </tr>
                     @endforelse
                 </tbody>

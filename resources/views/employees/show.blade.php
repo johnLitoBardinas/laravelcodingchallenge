@@ -10,6 +10,7 @@
 
         <div class="border border-dark mt-5 p-3">
             <h3 class="border border-dark border-b-2 text-lg p-3"><strong>COMPANY: </strong> {{$employee->company->name}}</h3>
+            <h3 class="border border-dark border-b-2 text-lg p-3"><strong>EMAIL: </strong> {{$employee->email}}</h3>
             <h3 class="border border-dark border-b-2 text-lg p-3"><strong>FIRST NAME: </strong> {{$employee->first_name}}</h3>
             <h3 class="border border-dark border-b-2 text-lg p-3"><strong>LAST NAME: </strong> {{$employee->last_name}}</h3>
             <h3 class="border border-dark border-b-2 text-lg p-3"><strong>AGE: </strong> {{$employee->age}}</h3>

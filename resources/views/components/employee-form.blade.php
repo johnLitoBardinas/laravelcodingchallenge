@@ -34,7 +34,18 @@
             </select>
         </div>
 
-        <div class="mb-4  flex flex-col">
+        <div class="mb-4 flex flex-col">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="bg-gray-100 border-2 lg:w-2/4 p-2 rounded-lg @error('email') border-red-500 @enderror"
+                placeholder="Enter your Email Address" value="{{ $employee->email ?? old('email') }}">
+            @error('email')
+                <div class="text-red-500 mt-2 text-sm">
+                    {{$message}}
+                </div>
+            @enderror
+        </div>
+
+        <div class="mb-4 flex flex-col">
             <label for="first_name">First Name</label>
             <input type="text" name="first_name" class="bg-gray-100 border-2 lg:w-2/4 p-2 rounded-lg @error('first_name') border-red-500 @enderror"
                 placeholder="Enter First Name" value="{{ $employee->first_name ?? old('first_name') }}">

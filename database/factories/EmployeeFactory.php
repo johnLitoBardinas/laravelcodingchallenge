@@ -24,6 +24,7 @@ class EmployeeFactory extends Factory
     {
         return [
             'employee_id' => generate_employee_id(),
+            'email' => $this->faker->email,
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'age' => $this->faker->randomElement([10, 20, 30]),
