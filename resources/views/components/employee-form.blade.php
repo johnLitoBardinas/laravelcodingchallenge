@@ -18,7 +18,7 @@
 
         <div class="mb-4 flex flex-col">
             <label for="company_id">Company</label>
-            <select name="company_id" class="bg-gray-100 border-2 lg:w-2/4 p-2 rounded-lg" value="{{ $employee->company_id ?? old('company_id') }}">
+            <select name="company_id" class="border-gray-500 border-2 lg:w-2/4 p-2 rounded-lg" value="{{ $employee->company_id ?? old('company_id') }}">
 
                 @if ($employee)
                     @foreach ($companies as $company)
@@ -34,20 +34,29 @@
             </select>
         </div>
 
-        <div class="mb-4 flex flex-col">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="bg-gray-100 border-2 lg:w-2/4 p-2 rounded-lg @error('email') border-red-500 @enderror"
-                placeholder="Enter your Email Address" value="{{ $employee->email ?? old('email') }}">
-            @error('email')
-                <div class="text-red-500 mt-2 text-sm">
-                    {{$message}}
-                </div>
-            @enderror
-        </div>
+        @if ($type === 'update')
+            <div class="mb-4 flex flex-col">
+                <label for="">Email</label>
+                <input type="email" class="bg-gray-200 border-gray-500 border-2 lg:w-2/4 p-2 rounded-lg" value="{{ $employee->email ?? old('email') }}" readonly disabled>
+            </div>
+        @endif
+
+        @if ($type === 'new')
+            <div class="mb-4 flex flex-col">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="border-gray-500 border-2 lg:w-2/4 p-2 rounded-lg @error('email') border-red-500 @enderror"
+                    placeholder="Enter your Email Address" value="{{ old('email') }}">
+                @error('email')
+                    <div class="text-red-500 mt-2 text-sm">
+                        {{$message}}
+                    </div>
+                @enderror
+            </div>
+        @endif
 
         <div class="mb-4 flex flex-col">
             <label for="first_name">First Name</label>
-            <input type="text" name="first_name" class="bg-gray-100 border-2 lg:w-2/4 p-2 rounded-lg @error('first_name') border-red-500 @enderror"
+            <input type="text" name="first_name" class="border-gray-500 border-2 lg:w-2/4 p-2 rounded-lg @error('first_name') border-red-500 @enderror"
                 placeholder="Enter First Name" value="{{ $employee->first_name ?? old('first_name') }}">
             @error('first_name')
                 <div class="text-red-500 mt-2 text-sm">
@@ -58,7 +67,7 @@
 
         <div class="mb-4 flex flex-col">
             <label for="last_name">Last Name</label>
-            <input type="text" name="last_name" class="bg-gray-100 border-2 lg:w-2/4 p-2 rounded-lg @error('last_name') border-red-500 @enderror"
+            <input type="text" name="last_name" class="border-gray-500 border-2 lg:w-2/4 p-2 rounded-lg @error('last_name') border-red-500 @enderror"
                 placeholder="Enter Last Name" value="{{ $employee->last_name ?? old('last_name') }}">
             @error('last_name')
                 <div class="text-red-500 mt-2 text-sm">
@@ -69,7 +78,7 @@
 
         <div class="mb-4 flex flex-col">
             <label for="age">Age</label>
-            <input type="number" name="age" min="1" max="127" class="bg-gray-100 border-2 lg:w-1/4 p-2 rounded-lg @error('age') border-red-500 @enderror"
+            <input type="number" name="age" min="1" max="127" class="border-gray-500 border-2 lg:w-1/4 p-2 rounded-lg @error('age') border-red-500 @enderror"
                 placeholder="Enter Age" value="{{ $employee->age ?? old('age') }}">
             @error('age')
                 <div class="text-red-500 mt-2 text-sm">
@@ -80,7 +89,7 @@
 
         <div class="mb-4 flex flex-col">
             <label for="contact_number">Contact Number</label>
-            <input type="text" name="contact_number" maxlength="11" class="bg-gray-100 border-2 lg:w-1/4 p-2 rounded-lg @error('contact_number') border-red-500 @enderror"
+            <input type="text" name="contact_number" maxlength="11" class="border-gray-500 border-2 lg:w-1/4 p-2 rounded-lg @error('contact_number') border-red-500 @enderror"
                 placeholder="Enter Contact Number" value="{{ $employee->contact_number ?? old('contact_number') }}">
             @error('contact_number')
                 <div class="text-red-500 mt-2 text-sm">
@@ -91,7 +100,7 @@
 
         <div class="mb-4 flex flex-col">
             <label for="address">Address</label>
-            <input type="text" name="address" class="bg-gray-100 border-2 w-full p-2 rounded-lg @error('address') border-red-500 @enderror"
+            <input type="text" name="address" class="border-gray-500 border-2 w-full p-2 rounded-lg @error('address') border-red-500 @enderror"
                 placeholder="Enter your Address" value="{{ $employee->address ?? old('address') }}">
             @error('address')
                 <div class="text-red-500 mt-2 text-sm">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Employee as RequestsEmployee;
 use App\Models\Company;
 use App\Models\Employee;
+use App\Rules\IsCompanyExist;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -41,8 +42,21 @@ class EmployeeController extends Controller
         return view('employees.edit', compact('companies', 'employee'));
     }
 
-    public function update(RequestsEmployee $request, Employee $employee)
+    public function update(Request $request, Employee $employee)
     {
+        $this->validate($request, [
+            'company_id' => [
+                'required',
+                new IsCompanyExist(),
+                'bail',
+            ],
+            'first_name' => 'required|string|max:119',
+            'last_name' => 'required|string|max:119',
+            'age' => 'required|integer|min:1|max:127',
+            'contact_number' => 'required|string|max:11',
+            'address' => 'required|string'
+        ]);
+
         $isUpdated = $employee->update($request->all());
 
         if ($isUpdated) {

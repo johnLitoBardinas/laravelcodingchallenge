@@ -1,4 +1,4 @@
-## Personal Care Services - AUTOMATED SUBSCRIPTION APPLICATION
+# Laravel Project
 
 ---
 ## 🛠️ Application Containers
@@ -15,10 +15,12 @@
 
 > **Requires [Docker 18+](https://docs.docker.com/release-notes/)**
 
-This project use docker for local development to build up the PHP, MYSQL, Nginx you only need to install **Docker 18+** and go to **.local/** folder and run the following command bellow.
+To avoid the headache running this project locally. I use **Docker** to easily spin up containers on development. Run **npm**, **composer** or even the **artisan** console command in containers. No need to install the proper version on the local machine we containerize it 🙂 . See below command to explore different commands.
 
 ### Bring Up all the containers
 > `docker-compose up -d --build`
+
+If the above command is successfull you can now visit the project at 👉 &nbsp; [localhost:8080](http://localhost:8080/)
 
 ### Bring Down all containers
 > `docker-compose down --rmi=local -v`
@@ -26,7 +28,6 @@ This project use docker for local development to build up the PHP, MYSQL, Nginx 
 ---
 
 ## ARTISAN, NPM, COMPOSER
-
 
 It is better to use the container for artisan command.
 ### Run a **artisan** console command
@@ -39,3 +40,8 @@ Node + NPM is in container also so that you automatically get the right version 
 Composer is also in container the same benefits to insure that the composer command was no conflict.
 ## Run the **composer** command
 > `docker-compose run --rm composer {composer-commands}`
+
+---
+
+## 📝 NOTES
+## Make sure your in the .local/ directory before running the above docker command in order to properly work.
