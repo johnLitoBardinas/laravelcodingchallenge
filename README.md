@@ -44,4 +44,7 @@ Composer is also in container the same benefits to insure that the composer comm
 ---
 
 ## 📝 NOTES
-## Make sure your in the .local/ directory before running the above docker command in order to properly work.
+### Make sure your in the .local/ directory before running the above docker command in order to properly work.
+
+## * MySQL Credentials
+### Make sure to copy the `.env.example` content to your `.env` file credentials already in place in Database configuration.
